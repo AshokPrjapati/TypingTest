@@ -8,7 +8,14 @@ const Accuracy = () => {
   return (
     <div className={styles.timer}>
       <div>
-        Accuracy:<span>{accuracy}</span>
+        Accuracy:
+        <span
+          style={{
+            color: accuracy < 50 ? "var(--c-red)" : "var(--c-green)",
+          }}
+        >
+          {accuracy}
+        </span>
       </div>
     </div>
   );

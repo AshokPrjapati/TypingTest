@@ -1,5 +1,6 @@
-import { useCallback, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import styles from "../../styles/Typing.module.css";
 
 import {
@@ -7,14 +8,18 @@ import {
   updateKeyCount,
   updateUserInput,
 } from "../../redux/typing/typing.action";
+
 import { getRandomKey } from "../../helper/getRandomKeys";
 
 const InputBox = ({ inputRef }) => {
-  const { referenceKeys, isTyping } = useSelector((store) => store.typing);
+  const { currentKey, isTyping } = useSelector((store) => store.typing);
   const dispatch = useDispatch();
+
+  const [isMatched, setMatched] = useState(true);
 
   const keys = ["a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'"];
 
+  // handle the action based on user input
   const handleChange = (e) => {
     // set random key as current key
     let randomKey = getRandomKey(keys);
@@ -23,27 +28,25 @@ const InputBox = ({ inputRef }) => {
     const inputValue = inputRef.current.value;
 
     // value typed by user
-    let currentValue = "";
+    let currentInputValue = "";
 
     // show only currently typed value in input field
     if (inputValue.length > 1) {
-      currentValue = inputValue.charAt(1);
-      inputRef.current.value = currentValue;
+      currentInputValue = inputValue.charAt(1);
+      inputRef.current.value = currentInputValue;
     } else {
-      currentValue = inputRef.current.value;
-      inputRef.current.value = currentValue;
+      currentInputValue = inputRef.current.value;
+      inputRef.current.value = currentInputValue;
     }
 
     // set typedKeys array - array contains all keys typed by user
-    dispatch(updateUserInput(currentValue));
+    dispatch(updateUserInput(currentInputValue));
 
-    // check currentvalue and random value and return boolean
-    let isMatched;
+    // compare currentInputvalue and current random value and return boolean
+    let isMatched = currentKey === currentInputValue;
 
-    if (referenceKeys.length === 0) isMatched = true;
-    else isMatched = referenceKeys[referenceKeys.length - 1] === currentValue;
+    setMatched(isMatched);
 
-    console.log(randomKey, currentValue);
     // update state
     dispatch(updateKeyCount(randomKey, isMatched));
   };
@@ -53,14 +56,25 @@ const InputBox = ({ inputRef }) => {
   }, [isTyping, handleChange]);
 
   return (
-    <div className={styles.input_box}>
-      <input
-        type="text"
-        ref={inputRef}
-        placeholder="Type... Start Test"
-        onChange={handleChange}
-      />
-    </div>
+    <>
+      <div className={styles.input_box}>
+        <input
+          type="text"
+          ref={inputRef}
+          placeholder="Type... Start Test"
+          onChange={handleChange}
+        />
+      </div>
+
+      {isTyping &&
+        (isMatched ? (
+          <div className={styles.info}>
+            Same character may be in sequence so don't confuse
+          </div>
+        ) : (
+          <div className={styles.alert}>You mistyped this character!</div>
+        ))}
+    </>
   );
 };
 

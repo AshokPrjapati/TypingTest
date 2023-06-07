@@ -5,9 +5,7 @@ import { getRandomKey } from "../../helper/getRandomKeys";
 import React, { useEffect } from "react";
 
 const KeyContainer = () => {
-  const { isTyping, typedKeys, currentKey } = useSelector(
-    (store) => store.typing
-  );
+  const { isTyping, currentKey } = useSelector((store) => store.typing);
 
   if (!isTyping) {
     return (

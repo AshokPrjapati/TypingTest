@@ -1,9 +1,9 @@
 import styles from "../../styles/Typing.module.css";
 
-const InputBox = () => {
+const InputBox = ({ inputRef }) => {
   return (
     <div className={styles.input_box}>
-      <input type="text" />
+      <input type="text" ref={inputRef} />
     </div>
   );
 };

@@ -95,3 +95,21 @@
     color: #fff;
     scale: 1.1;
 }
+
+.timer {
+    min-width: 250px;
+    text-align: center;
+    font-size: 1.3rem;
+    border: 1px solid;
+    padding: 1rem;
+    background-color: var(--c-purple);
+    color: var(--white-color);
+    border: 2px solid var(--c-purple);
+    border-radius: 1rem;
+    font-weight: 600;
+}
+
+.timer>div>span {
+    color: var(--c-green);
+    margin-left: .5rem;
+}

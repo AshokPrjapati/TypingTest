@@ -4,7 +4,7 @@ import * as Types from "./typing.actionTypes"
 // timer actions
 export const startTimer = () => ({ type: Types.START_TIMER });
 
-export const timerFinished = () => ({ type: Types.TIMER_FINISHED });
+export const timerFinished = () => ({ type: Types.TIMER_FINISHED })
 
 // keypress actions
 export const updateKeyCount = (key, isCorrect) => ({

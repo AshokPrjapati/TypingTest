@@ -1,8 +1,7 @@
-import { put, takeEvery, select, delay, all } from 'redux-saga/effects';
+import { put, take, takeEvery, select, delay, all } from 'redux-saga/effects';
 import { START_TIMER, TIMER_FINISHED, UPDATE_KEY_COUNT } from './typing.actionTypes';
 import calculateAccuracy from '../../helper/calculateAccuracy';
 import { updateAccuracy } from './typing.action';
-
 
 // Worker saga to update key count and accuracy
 function* updateKeyCountSaga(action) {
@@ -21,10 +20,8 @@ function* watchKeyCountUpdate() {
 }
 
 function* typingTimer() {
-    yield takeEvery(START_TIMER, function* () {
-        yield delay(5 * 60 * 1000); // 5 minutes delay
-        yield put({ type: TIMER_FINISHED });
-    });
+    yield delay(5000);
+    yield put({ type: TIMER_FINISHED });
 }
 
 // Watcher saga to listen for start timer
@@ -34,5 +31,5 @@ export function* watchPractice() {
 
 // Root saga
 export default function* typingSaga() {
-    yield all([watchKeyCountUpdate(), watchPractice()]);
+    yield all([watchPractice(), watchKeyCountUpdate()]);
 }

@@ -1,7 +1,7 @@
 import { useCallback, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { startTimer } from "../redux/typing/typing.action";
+import { startTimer, timerFinished } from "../redux/typing/typing.action";
 
 import Heading from "../components/typing/Heading";
 import InputBox from "../components/typing/InputBox";
@@ -11,6 +11,7 @@ import Button from "../components/Button";
 import styles from "../styles/Typing.module.css";
 import Timer from "../components/typing/Timer";
 import useTimer from "../hooks/useTimer";
+import Accuracy from "../components/typing/Accuracy";
 
 const Typing = () => {
   const disptach = useDispatch();
@@ -25,6 +26,11 @@ const Typing = () => {
     disptach(startTimer());
   }, [disptach]);
 
+  const endTimer = useCallback(() => {
+    // stopTimer
+    disptach(timerFinished());
+  }, [disptach]);
+
   return (
     <div className={styles.container}>
       <Heading
@@ -35,8 +41,15 @@ const Typing = () => {
       <KeyContainer />
       <InputBox inputRef={inputRef} />
 
-      {!isTyping && <Button label="Start Test" action={runTimer} />}
-      {isTyping && <Timer time={time} />}
+      {isTyping ? (
+        <>
+          <Timer time={time} />
+          <Accuracy />
+          <Button label="Stop Test" action={endTimer} small />
+        </>
+      ) : (
+        <Button label="Start Test" action={runTimer} />
+      )}
     </div>
   );
 };

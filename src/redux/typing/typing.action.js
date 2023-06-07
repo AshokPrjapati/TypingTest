@@ -22,3 +22,8 @@ export const setCurrentKey = (key) => ({
     type: Types.SET_CURRENT_KEY,
     payload: key,
 });
+
+export const updateUserInput = (key) => ({
+    type: Types.SET_TYPED_KEYS,
+    payload: key
+})

@@ -3,14 +3,10 @@ import { START_TIMER, TIMER_FINISHED, UPDATE_KEY_COUNT } from './typing.actionTy
 import calculateAccuracy from '../../helper/calculateAccuracy';
 import { updateAccuracy } from './typing.action';
 
-// Worker saga to update key count and accuracy
+// update key count and accuracy
 function* updateKeyCountSaga(action) {
-    const { payload } = action;
-    const typedKeys = yield select((state) => state.typing.typedKeys);
-    const isCorrect = payload === typedKeys[typedKeys.length - 1];
-    yield put({ type: UPDATE_KEY_COUNT, payload, isCorrect });
-    const { keyCount, correctKeyCount } = yield select((state) => state.typing);
-    const accuracy = calculateAccuracy(keyCount, correctKeyCount);
+    const { referenceKeys, correctKeyCount } = yield select((state) => state.typing);
+    const accuracy = calculateAccuracy(referenceKeys.length, correctKeyCount);
     yield put(updateAccuracy(accuracy));
 }
 
@@ -20,7 +16,7 @@ function* watchKeyCountUpdate() {
 }
 
 function* typingTimer() {
-    yield delay(5000);
+    yield delay(5 * 60 * 1000);
     yield put({ type: TIMER_FINISHED });
 }
 

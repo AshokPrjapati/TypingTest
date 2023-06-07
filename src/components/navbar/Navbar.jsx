@@ -3,18 +3,18 @@ import styles from "../../styles/Navbar.module.css"
 
 const Navbar = () => {
     return (
-        <header className={styles.Navbar}>
-            <Link to='/' className={styles.logo}>
-                <img src="car-logo.png" alt="logo" />
+        <header className={styles.navbar}>
+            <Link to="/" className={styles.title}>
+                <div>
+                    <img src="/images/logo.png" alt="logo" />
+                </div>
                 <h1>Typing Test</h1>
             </Link>
 
             <nav>
                 <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/practice">practice</Link></li>
                     <li>
-                        {/* auth part */}
+                        <Link to="/signin">Login</Link>
                     </li>
                 </ul>
             </nav>

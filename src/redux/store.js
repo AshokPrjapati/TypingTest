@@ -1,7 +1,7 @@
 import { legacy_createStore, applyMiddleware, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import typingSaga from "./typing/typingSaga";
-import { reducer as typingReducer } from './typing/typing.reducer';
+import typingReducer from './typing/typing.reducer';
 
 // Create the saga middleware
 const sagaMiddleware = createSagaMiddleware();

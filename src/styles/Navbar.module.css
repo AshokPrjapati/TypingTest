@@ -1,0 +1,35 @@
+.navbar {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+.title {
+    display: flex;
+    gap: .5rem;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .5rem;
+    text-decoration: none;
+    color: var(--white-color);
+}
+
+.title>div>img {
+    max-width: 3.5rem;
+    height: auto;
+    filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+}
+
+
+nav>ul {
+    list-style: none;
+}
+
+nav>ul>li>a {
+    text-decoration: none;
+    color: var(--white-color);
+}

@@ -113,3 +113,11 @@
     color: var(--c-green);
     margin-left: .5rem;
 }
+
+.key_message {
+    color: var(--white-color);
+}
+
+.key_message>span {
+    color: var(--c-green);
+}

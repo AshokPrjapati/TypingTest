@@ -1,5 +1,4 @@
-import { FINISH_PRACTICE } from "../../../../clone-TypingWebApp/src/Redux/actionTypes";
-import { START_TIMER, UPDATE_ACCURACY, UPDATE_KEY_COUNT } from "./typing.actionTypes"
+import { START_TIMER, TIMER_FINISHED, UPDATE_ACCURACY, UPDATE_KEY_COUNT } from "./typing.actionTypes"
 
 const initialState = {
     isTyping: false,
@@ -14,7 +13,7 @@ const reducer = (state = initialState, action) => {
         case START_TIMER:
             return { ...state, typedKeys: [], isTyping: true };
 
-        case FINISH_PRACTICE:
+        case TIMER_FINISHED:
             return { ...state, isTyping: false };
 
         case UPDATE_KEY_COUNT:

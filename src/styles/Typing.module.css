@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 2rem;
+}
+
+.center {
+    text-align: center;
+}
+
+.center,
+.default {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.center>div:first-child,
+.default>div:first-child {
+    font-size: 2rem;
+    color: var(--white-color);
+    font-weight: 600;
+}
+
+.center>div:last-child,
+.default>div:last-child {
+    font-size: 1.1rem;
+    color: var(--c-green);
+}
+
+.key_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 2px solid var(--c-green);
+    border-radius: 50%;
+    color: var(--white-color);
+    font-weight: 600;
+    font-size: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+}
+
+.input_box {
+    border: 2px solid transparent;
+    background: var(--c-purple);
+    border-radius: 1rem;
+    padding: .8rem;
+}
+
+.input_box>input {
+    background: none;
+    outline: none;
+    border: none;
+    color: var(--white-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-align: center;
+}
+
+.input_box>input:focus {
+    outline: none;
+}
+
+.small_button {
+    padding: .3rem .8rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.default_button {
+    padding: .5rem 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.default_button,
+.small_button {
+    border-radius: .5rem;
+    border: 2px solid var(--c-green);
+    color: var(--c-green);
+    cursor: pointer;
+    transition: .2s ease;
+    background-color: inherit;
+}
+
+.default_button:hover,
+.small_button:hover {
+    background-color: var(--c-green);
+    color: #fff;
+    scale: 1.1;
+}

@@ -36,7 +36,7 @@ const Typing = () => {
   const endTimer = useCallback(() => {
     // stopTimer
     disptach(timerFinished());
-  }, [disptach]);
+  }, [timerFinished]);
 
   // open modal when typing window is completed or typing stopped
   useEffect(() => {

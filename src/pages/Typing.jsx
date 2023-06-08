@@ -15,6 +15,7 @@ import useToggle from "../hooks/useToggle";
 
 import styles from "../styles/Typing.module.css";
 import ResultModal from "../components/modal/ResultModal";
+import WPM from "../components/typing/WPM";
 
 const Typing = () => {
   const disptach = useDispatch();
@@ -43,29 +44,36 @@ const Typing = () => {
   }, [isTyping]);
 
   return (
-    <div className={styles.container}>
-      {!isTyping && (
-        <Heading
-          title="Welcome to Typing Test"
-          subtitle="Improve your touch typing by practice"
-          center
-        />
-      )}
+    <div className={styles.parent}>
+      <div className={styles.container}>
+        {!isTyping && (
+          <Heading
+            title="Welcome to Typing Test"
+            subtitle="Improve your touch typing by practice"
+            center
+          />
+        )}
 
-      <KeyContainer />
-      <InputBox inputRef={inputRef} />
+        <KeyContainer />
+        <InputBox inputRef={inputRef} />
 
-      {isTyping ? (
-        <>
-          <Timer time={time} />
-          <Accuracy />
-          <Button label="Stop Test" action={endTimer} small />
-        </>
-      ) : (
-        <Button label="Start Test" action={runTimer} />
-      )}
+        {isTyping ? (
+          <>
+            <div className={styles.statics}>
+              <Timer time={time} />
+              <Accuracy />
+              <WPM time={time} />
+            </div>
+            <Button label="Stop Test" action={endTimer} small />
+          </>
+        ) : (
+          <Button label="Start Test" action={runTimer} />
+        )}
 
-      {isOpen && <ResultModal isOpen={isOpen} onClose={onClose} time={time} />}
+        {isOpen && (
+          <ResultModal isOpen={isOpen} onClose={onClose} time={time} />
+        )}
+      </div>
     </div>
   );
 };

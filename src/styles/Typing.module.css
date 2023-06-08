@@ -41,8 +41,8 @@
     font-weight: 600;
 }
 
-.center>div:last-child,
-.default>div:last-child {
+.center>div:nth-child(2),
+.default>div:nth-child(2) {
     font-size: 1.1rem;
     color: var(--c-green);
 }
@@ -51,9 +51,6 @@
     font-size: 1.5rem;
 }
 
-.small_heading>div:last-child {
-    font-size: 1rem;
-}
 
 .key_container {
     display: flex;

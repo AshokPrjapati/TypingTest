@@ -9,13 +9,13 @@ import KeyContainer from "../components/typing/KeyContainer";
 import Button from "../components/Button";
 import Timer from "../components/typing/Timer";
 import Accuracy from "../components/typing/Accuracy";
+import ResultModal from "../components/modal/ResultModal";
+import WPM from "../components/typing/WPM";
 
 import useTimer from "../hooks/useTimer";
 import useToggle from "../hooks/useToggle";
 
 import styles from "../styles/Typing.module.css";
-import ResultModal from "../components/modal/ResultModal";
-import WPM from "../components/typing/WPM";
 
 const Typing = () => {
   const disptach = useDispatch();

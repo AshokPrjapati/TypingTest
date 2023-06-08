@@ -9,7 +9,7 @@ const Modal = ({ isOpen, onClose, title, body, actionLabel }) => {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal_content}>
-        <Heading title={title} />
+        <Heading title={title} small />
         <div>{body}</div>
         <hr />
         <div>

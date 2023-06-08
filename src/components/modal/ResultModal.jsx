@@ -32,7 +32,7 @@ const ResultModal = ({ isOpen, onClose, time }) => {
             color: accuracy < 50 ? "var(--c-red)" : "var(--c-green)",
           }}
         >
-          {accuracy}
+          {accuracy} %
         </span>
       </div>
     </div>

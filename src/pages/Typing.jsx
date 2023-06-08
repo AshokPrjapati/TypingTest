@@ -65,7 +65,7 @@ const Typing = () => {
         <Button label="Start Test" action={runTimer} />
       )}
 
-      {isOpen && <ResultModal isOpen={isOpen} onClose={onClose} />}
+      {isOpen && <ResultModal isOpen={isOpen} onClose={onClose} time={time} />}
     </div>
   );
 };

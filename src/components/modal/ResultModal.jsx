@@ -5,11 +5,11 @@ import styles from "../../styles/Modal.module.css";
 
 import Modal from "./Modal";
 
-const ResultModal = ({ isOpen, onClose }) => {
-  const { referenceKeys, typedKeys, correctKeyCount, accuracy } = useSelector(
+const ResultModal = ({ isOpen, onClose, time }) => {
+  const { typedKeys, correctKeyCount, accuracy } = useSelector(
     (store) => store.typing
   );
-  console.log(isOpen);
+
   // modal body
   const bodyContent = (
     <div className={styles.body_content}>
@@ -20,6 +20,10 @@ const ResultModal = ({ isOpen, onClose }) => {
       <div>
         <div> No. of corrected typed Keys:</div>
         <span>{correctKeyCount}</span>
+      </div>
+      <div>
+        <div>Time taken:</div>
+        <span>{time} Sec</span>
       </div>
       <div>
         Accuracy:

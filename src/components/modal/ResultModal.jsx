@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import styles from "../../styles/Modal.module.css";
 
 import Modal from "./Modal";
+import { wpmCalculator } from "../../helper/wpmCalculator";
 
 const ResultModal = ({ isOpen, onClose, time }) => {
-  const { typedKeys, correctKeyCount, accuracy } = useSelector(
+  const { isTyping, typedKeys, correctKeyCount, accuracy } = useSelector(
     (store) => store.typing
   );
+
+  let wpm = 0;
+  if (!isTyping) wpm = wpmCalculator(typedKeys.length, time);
 
   // modal body
   const bodyContent = (
@@ -24,6 +28,16 @@ const ResultModal = ({ isOpen, onClose, time }) => {
       <div>
         <div>Time taken:</div>
         <span>{time} Sec</span>
+      </div>
+      <div>
+        WPM:
+        <span
+          style={{
+            color: wpm < 5 ? "var(--c-red)" : "var(--c-green)",
+          }}
+        >
+          {wpm || 0}
+        </span>
       </div>
       <div>
         Accuracy:

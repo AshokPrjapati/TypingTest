@@ -22,7 +22,7 @@ const WPM = ({ time }) => {
             color: wpmRef.current < 5 ? "var(--c-red)" : "var(--c-green)",
           }}
         >
-          {wpmRef?.current || 0.0}
+          {wpmRef?.current || 0}
         </span>
       </div>
     </div>

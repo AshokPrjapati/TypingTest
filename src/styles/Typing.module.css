@@ -11,8 +11,10 @@
     text-align: center;
 }
 
+
 .center,
-.default {
+.default,
+.small_heading {
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -29,6 +31,14 @@
 .default>div:last-child {
     font-size: 1.1rem;
     color: var(--c-green);
+}
+
+.small_heading>div:first-child {
+    font-size: 1.5rem;
+}
+
+.small_heading>div:last-child {
+    font-size: 1rem;
 }
 
 .key_container {

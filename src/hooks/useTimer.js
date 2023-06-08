@@ -10,13 +10,11 @@ const useTimer = (initialTime = 0, interval = 1000) => {
 
         // if user started typing then timer will start
         if (isTyping) {
+            setTime(0)
             timerId = setInterval(() => {
                 setTime((prevTime) => prevTime + interval / 1000);
             }, interval);
-        } else {
-            setTime(0);
         }
-
         // cleanup function
         return () => {
             clearInterval(timerId);
@@ -24,6 +22,7 @@ const useTimer = (initialTime = 0, interval = 1000) => {
     }, [isTyping, interval]);
 
     return time
+
 };
 
 export default useTimer;

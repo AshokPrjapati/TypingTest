@@ -12,10 +12,10 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case START_TIMER:
-            return { ...state, typedKeys: [], isTyping: true, accuracy: 100, correctKeyCount: 0 };
+            return { ...state, typedKeys: [], referenceKeys: [], typedKeys: [], isTyping: true, accuracy: 100, correctKeyCount: 0 };
 
         case TIMER_FINISHED:
-            return { ...state, isTyping: false, referenceKeys: [], typedKeys: [] };
+            return { ...state, isTyping: false, };
 
         case SET_TYPED_KEYS:
             return {

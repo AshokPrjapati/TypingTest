@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { startTimer, timerFinished } from "../redux/typing/typing.action";
@@ -7,15 +7,21 @@ import Heading from "../components/typing/Heading";
 import InputBox from "../components/typing/InputBox";
 import KeyContainer from "../components/typing/KeyContainer";
 import Button from "../components/Button";
+import Timer from "../components/typing/Timer";
+import Accuracy from "../components/typing/Accuracy";
+
+import useTimer from "../hooks/useTimer";
+import useToggle from "../hooks/useToggle";
 
 import styles from "../styles/Typing.module.css";
-import Timer from "../components/typing/Timer";
-import useTimer from "../hooks/useTimer";
-import Accuracy from "../components/typing/Accuracy";
+import ResultModal from "../components/modal/ResultModal";
 
 const Typing = () => {
   const disptach = useDispatch();
-  const isTyping = useSelector((store) => store.typing.isTyping);
+  const { isTyping, typedKeys } = useSelector((store) => store.typing);
+
+  const { isOpen, onOpen, onClose } = useToggle();
+
   const time = useTimer(isTyping);
   const inputRef = useRef(null);
 
@@ -31,13 +37,21 @@ const Typing = () => {
     disptach(timerFinished());
   }, [disptach]);
 
+  // open modal when typing window is completed or typing stopped
+  useEffect(() => {
+    if (!isTyping && typedKeys.length) onOpen();
+  }, [isTyping]);
+
   return (
     <div className={styles.container}>
-      <Heading
-        title="Welcome to Typing Test"
-        subtitle="Improve your touch typing by practice"
-        center
-      />
+      {!isTyping && (
+        <Heading
+          title="Welcome to Typing Test"
+          subtitle="Improve your touch typing by practice"
+          center
+        />
+      )}
+
       <KeyContainer />
       <InputBox inputRef={inputRef} />
 
@@ -50,6 +64,8 @@ const Typing = () => {
       ) : (
         <Button label="Start Test" action={runTimer} />
       )}
+
+      {isOpen && <ResultModal isOpen={isOpen} onClose={onClose} />}
     </div>
   );
 };
